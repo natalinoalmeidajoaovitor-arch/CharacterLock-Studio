@@ -1,0 +1,59 @@
+{
+  "parameters": {
+    "identity_prompt": {
+      "node_id": "100",
+      "input": "prompt",
+      "kind": "prompt",
+      "type": "string",
+      "required": true
+    },
+    "steps": {
+      "node_id": "62",
+      "input": "value",
+      "kind": "other",
+      "type": "integer",
+      "default": 10,
+      "min": 1,
+      "max": 10000
+    },
+    "face_head": {
+      "node_id": "40",
+      "input": "media_state",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "serializer": "h3_media_state"
+    },
+    "face_angle": {
+      "node_id": "46",
+      "input": "media_state",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "serializer": "h3_media_state"
+    },
+    "upper_references": {
+      "node_id": "42",
+      "input": "media_state",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "serializer": "h3_media_state"
+    },
+    "full_references": {
+      "node_id": "44",
+      "input": "media_state",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "serializer": "h3_media_state"
+    }
+  },
+  "output_nodes": [
+    "103",
+    "113",
+    "203",
+    "283",
+    "353"
+  ]
+}

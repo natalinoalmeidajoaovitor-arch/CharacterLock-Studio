@@ -1,0 +1,376 @@
+{
+  "version": "1.0.0",
+  "description": "Redistributable ComfyUI API-format workflows and explicit parameter mappings for CharacterLock Studio.",
+  "workflows": [
+    {
+      "id": "6257db03a2f145e797cabc302a19f23c",
+      "slug": "qwen21-base-identity",
+      "name": "Qwen 2.1 — Imagem-base",
+      "module": "character_lab",
+      "api_file": "qwen21-base-identity.api.json",
+      "mapping_file": "qwen21-base-identity.mapping.json",
+      "lab_binding": null
+    },
+    {
+      "id": "890c384b9f2748f482e822bca1ff15fd",
+      "slug": "qwen21-sheet-9view-description",
+      "name": "Qwen 2.1 · Sheet padrão 9 vistas por descrição",
+      "module": "character_lab",
+      "api_file": "qwen21-sheet-9view-description.api.json",
+      "mapping_file": "qwen21-sheet-9view-description.mapping.json",
+      "lab_binding": {
+        "stage": "character_sheet",
+        "config": {
+          "workflow_id": "890c384b9f2748f482e822bca1ff15fd",
+          "stage": "character_sheet",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {},
+          "output_categories": {
+            "103": "face",
+            "193": "face_three_quarter",
+            "203": "face_profile",
+            "263": "upper_body",
+            "343": "full_body",
+            "353": "body_three_quarter",
+            "363": "side",
+            "383": "back",
+            "433": "pose_a",
+            "443": "pose_hands_on_hips",
+            "422": "character_sheet"
+          },
+          "prompt_template": "Create a realistic standard close-up reference portrait of an original fictional adult character. Identity profile: {identity}. Front-facing head and shoulders, camera at eye level, face centred and prominent, complete head and hair visible, plain pale grey studio background, even soft light, natural skin. Fully clothed in modest casual clothing. This close-up defines the face for the connected profile, three-quarter, body and pose views."
+        }
+      }
+    },
+    {
+      "id": "a50cb9c1795b42989f047b5add548029",
+      "slug": "qwen21-sheet-9view-reference",
+      "name": "Qwen 2.1 · Sheet padrão 9 vistas com referência",
+      "module": "character_lab",
+      "api_file": "qwen21-sheet-9view-reference.api.json",
+      "mapping_file": "qwen21-sheet-9view-reference.mapping.json",
+      "lab_binding": {
+        "stage": "character_sheet",
+        "config": {
+          "workflow_id": "a50cb9c1795b42989f047b5add548029",
+          "stage": "character_sheet",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "reference_image": "optional_reference"
+          },
+          "output_categories": {
+            "103": "face",
+            "193": "face_three_quarter",
+            "203": "face_profile",
+            "263": "upper_body",
+            "343": "full_body",
+            "353": "body_three_quarter",
+            "363": "side",
+            "383": "back",
+            "433": "pose_a",
+            "443": "pose_hands_on_hips",
+            "422": "character_sheet"
+          },
+          "prompt_template": "Create a realistic standard close-up reference portrait of an original fictional adult character. Identity profile: {identity}. Front-facing head and shoulders, camera at eye level, face centred and prominent, complete head and hair visible, plain pale grey studio background, even soft light, natural skin. Fully clothed in modest casual clothing. This close-up defines the face for the connected profile, three-quarter, body and pose views. Retain the face, hair and recognizable identity of <image1>; do not replace the person with a new face."
+        }
+      }
+    },
+    {
+      "id": "c813d896e13c46418dd2daa6483bd675",
+      "slug": "qwen21-sheet-description",
+      "name": "Qwen 2.1 · Character Sheet por descrição",
+      "module": "character_lab",
+      "api_file": "qwen21-sheet-description.api.json",
+      "mapping_file": "qwen21-sheet-description.mapping.json",
+      "lab_binding": {
+        "stage": "character_sheet",
+        "config": {
+          "workflow_id": "c813d896e13c46418dd2daa6483bd675",
+          "stage": "character_sheet",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {},
+          "output_categories": {
+            "103": "face",
+            "263": "upper_body",
+            "343": "full_body",
+            "363": "side",
+            "383": "back",
+            "422": "character_sheet"
+          },
+          "prompt_template": "Create a realistic reference portrait of an original fictional adult character. Identity profile: {identity}. Neutral front-facing head and shoulders, complete head and hair visible, plain pale grey studio background, even soft light, natural skin. Fully clothed in modest casual clothing. This portrait will define the face for the connected body and turnaround views."
+        }
+      }
+    },
+    {
+      "id": "44c4014dc27141c2a4a3c8b8ad8acec9",
+      "slug": "qwen21-sheet-reference",
+      "name": "Qwen 2.1 · Character Sheet com referência",
+      "module": "character_lab",
+      "api_file": "qwen21-sheet-reference.api.json",
+      "mapping_file": "qwen21-sheet-reference.mapping.json",
+      "lab_binding": {
+        "stage": "character_sheet",
+        "config": {
+          "workflow_id": "44c4014dc27141c2a4a3c8b8ad8acec9",
+          "stage": "character_sheet",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "reference_image": "optional_reference"
+          },
+          "output_categories": {
+            "103": "face",
+            "263": "upper_body",
+            "343": "full_body",
+            "363": "side",
+            "383": "back",
+            "422": "character_sheet"
+          },
+          "prompt_template": "Create a realistic reference portrait of an original fictional adult character. Identity profile: {identity}. Neutral front-facing head and shoulders, complete head and hair visible, plain pale grey studio background, even soft light, natural skin. Fully clothed in modest casual clothing. This portrait will define the face for the connected body and turnaround views. Retain the face, hair and recognizable identity of <image1>; do not replace the person with a new face."
+        }
+      }
+    },
+    {
+      "id": "90053a06b82a4df2b12850a6a684a055",
+      "slug": "matrix-qwen21-dataset-head",
+      "name": "MATRIX Qwen 2.1 · Expressões e rosto (8 imagens)",
+      "module": "character_lab",
+      "api_file": "matrix-qwen21-dataset-head.api.json",
+      "mapping_file": "matrix-qwen21-dataset-head.mapping.json",
+      "lab_binding": {
+        "stage": "dataset",
+        "config": {
+          "workflow_id": "90053a06b82a4df2b12850a6a684a055",
+          "stage": "dataset",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "sheet_references": "sheet_face"
+          },
+          "output_categories": {
+            "103": "face",
+            "113": "expressions",
+            "123": "expressions",
+            "133": "expressions",
+            "143": "expressions",
+            "153": "expressions",
+            "163": "angles",
+            "173": "angles"
+          },
+          "prompt_template": "Same person as <image1>. Neutral relaxed expression, lips softly closed, calm direct gaze into the camera, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "2dc1ee581e824c889e508ad53b070588",
+      "slug": "matrix-qwen21-dataset-head360",
+      "name": "MATRIX Qwen 2.1 · Rosto em 360° (8 imagens)",
+      "module": "character_lab",
+      "api_file": "matrix-qwen21-dataset-head360.api.json",
+      "mapping_file": "matrix-qwen21-dataset-head360.mapping.json",
+      "lab_binding": {
+        "stage": "dataset",
+        "config": {
+          "workflow_id": "2dc1ee581e824c889e508ad53b070588",
+          "stage": "dataset",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "sheet_references": "sheet_face"
+          },
+          "output_categories": {
+            "183": "angles",
+            "193": "angles",
+            "203": "angles",
+            "213": "angles",
+            "223": "angles",
+            "233": "angles",
+            "243": "angles",
+            "253": "angles"
+          },
+          "prompt_template": "Same person as <image1>. Neutral relaxed expression, lips softly closed, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "638ed6c37382470c8bcbd729dce0a3e3",
+      "slug": "matrix-qwen21-dataset-upper360",
+      "name": "MATRIX Qwen 2.1 · Tronco em 360° (8 imagens)",
+      "module": "character_lab",
+      "api_file": "matrix-qwen21-dataset-upper360.api.json",
+      "mapping_file": "matrix-qwen21-dataset-upper360.mapping.json",
+      "lab_binding": {
+        "stage": "dataset",
+        "config": {
+          "workflow_id": "638ed6c37382470c8bcbd729dce0a3e3",
+          "stage": "dataset",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "sheet_references": "sheet_upper_bundle"
+          },
+          "output_categories": {
+            "263": "body",
+            "273": "body",
+            "283": "body",
+            "293": "body",
+            "303": "body",
+            "313": "body",
+            "323": "body",
+            "333": "body"
+          },
+          "prompt_template": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose: the person faces the camera straight-on. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "6443f82531a74ab3b610df2491c69b0d",
+      "slug": "matrix-qwen21-dataset-full360",
+      "name": "MATRIX Qwen 2.1 · Corpo inteiro em 360° (8 imagens)",
+      "module": "character_lab",
+      "api_file": "matrix-qwen21-dataset-full360.api.json",
+      "mapping_file": "matrix-qwen21-dataset-full360.mapping.json",
+      "lab_binding": {
+        "stage": "dataset",
+        "config": {
+          "workflow_id": "6443f82531a74ab3b610df2491c69b0d",
+          "stage": "dataset",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "sheet_references": "sheet_full_bundle"
+          },
+          "output_categories": {
+            "343": "body",
+            "353": "body",
+            "363": "body",
+            "373": "body",
+            "383": "body",
+            "393": "body",
+            "403": "body",
+            "413": "body"
+          },
+          "prompt_template": "Same person: <image1> shows the face, <image2> the upper body, <image3> the full body with the complete outfit and shoes. Change the pose: the person faces the camera straight-on. Full body from head to feet, the whole body inside the frame, standing straight with the arms relaxed slightly away from the body, camera at waist height about 3 metres away, no wide-angle distortion. Keep the exact body shape and proportions of <image3>: the same height, shoulder width, bust, waist, hips and leg length; do not make the body slimmer, curvier, taller or shorter. Wearing exactly the clothing and shoes of <image3>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "1d8360ffd1dc405eb173eead8b48cfeb",
+      "slug": "matrix-qwen21-dataset-quick5",
+      "name": "MATRIX Qwen 2.1 · Teste de 5 fotos",
+      "module": "character_lab",
+      "api_file": "matrix-qwen21-dataset-quick5.api.json",
+      "mapping_file": "matrix-qwen21-dataset-quick5.mapping.json",
+      "lab_binding": {
+        "stage": "dataset",
+        "config": {
+          "workflow_id": "1d8360ffd1dc405eb173eead8b48cfeb",
+          "stage": "dataset",
+          "prompt_parameter": "identity_prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "face_head": "sheet_face",
+            "face_angle": "sheet_face",
+            "upper_references": "sheet_upper_bundle",
+            "full_references": "sheet_full_bundle"
+          },
+          "output_categories": {
+            "103": "face",
+            "113": "expressions",
+            "203": "angles",
+            "283": "body",
+            "353": "body"
+          },
+          "prompt_template": "Same person as <image1>. Neutral relaxed expression, lips softly closed, calm direct gaze into the camera, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "6148a91196c847fd9b19d7c33f5a6ef8",
+      "slug": "qwen21-character-outfit",
+      "name": "Qwen 2.1 · Figurino da Personagem (local)",
+      "module": "character_lab",
+      "api_file": "qwen21-character-outfit.api.json",
+      "mapping_file": "qwen21-character-outfit.mapping.json",
+      "lab_binding": {
+        "stage": "outfits",
+        "config": {
+          "workflow_id": "6148a91196c847fd9b19d7c33f5a6ef8",
+          "stage": "outfits",
+          "prompt_parameter": "prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "identity_references": "sheet_full_bundle"
+          },
+          "output_categories": {
+            "103": "outfits"
+          },
+          "prompt_template": "Same person as <image1>, <image2>, and <image3>. Full-body studio fashion photograph showing the character wearing the requested outfit: {prompt}. Plain soft grey studio background, even studio lighting, sharp focus, realistic skin and fabric texture. Keep the exact face, hair, skin tone, eye colour, and body proportions of <image1>, <image2>, and <image3>.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "c7e06f42dac4465db2d88715367cd109",
+      "slug": "qwen21-scene-reference",
+      "name": "Qwen 2.1 · Referência em Cena (local)",
+      "module": "character_lab",
+      "api_file": "qwen21-scene-reference.api.json",
+      "mapping_file": "qwen21-scene-reference.mapping.json",
+      "lab_binding": {
+        "stage": "references",
+        "config": {
+          "workflow_id": "c7e06f42dac4465db2d88715367cd109",
+          "stage": "references",
+          "prompt_parameter": "prompt",
+          "steps_parameter": "steps",
+          "reference_parameters": {
+            "identity_references": "sheet_full_bundle"
+          },
+          "output_categories": {
+            "103": "references"
+          },
+          "prompt_template": "Same person as <image1>, <image2>, and <image3>. Realistic cinematic photograph of the character in scene: {prompt}. Natural lighting, sharp focus on the face, realistic skin texture and proportions. Keep the exact face, hair, skin tone, eye colour, and recognizable identity of <image1>, <image2>, and <image3>.\n\nCharacter identity profile: {identity}"
+        }
+      }
+    },
+    {
+      "id": "be7b270dbede4bbcb784a7a88d0fc2c5",
+      "slug": "minimax-h3-video-realism-turbo8",
+      "name": "MiniMax H3 · Realismo + Turbo 8 (local)",
+      "module": "video_studio",
+      "api_file": "minimax-h3-video-realism-turbo8.api.json",
+      "mapping_file": "minimax-h3-video-realism-turbo8.mapping.json",
+      "lab_binding": null
+    },
+    {
+      "id": "d01d407a9ab54a2e9827fd73ec5cb1aa",
+      "slug": "minimax-h3-video-base",
+      "name": "MiniMax H3 · vídeo base local",
+      "module": "video_studio",
+      "api_file": "minimax-h3-video-base.api.json",
+      "mapping_file": "minimax-h3-video-base.mapping.json",
+      "lab_binding": null
+    },
+    {
+      "id": "1396636f21dc4040ac31e931bd656c89",
+      "slug": "minimax-h3-motion-swap-5s",
+      "name": "MiniMax H3 · Character & Motion Swap (local)",
+      "module": "motion_swap",
+      "api_file": "minimax-h3-motion-swap-5s.api.json",
+      "mapping_file": "minimax-h3-motion-swap-5s.mapping.json",
+      "lab_binding": null
+    },
+    {
+      "id": "6440066ef1c64e279ef9e6722f58ee7e",
+      "slug": "omnivoice-local-narration",
+      "name": "OmniVoice - narração local (auto voice)",
+      "module": "voice",
+      "api_file": "omnivoice-local-narration.api.json",
+      "mapping_file": "omnivoice-local-narration.mapping.json",
+      "lab_binding": null
+    }
+  ]
+}

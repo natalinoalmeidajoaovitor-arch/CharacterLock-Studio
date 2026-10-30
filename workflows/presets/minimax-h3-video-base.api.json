@@ -1,0 +1,230 @@
+{
+  "36": {
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "class_type": "VAELoader"
+  },
+  "37": {
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    },
+    "class_type": "VAELoader"
+  },
+  "51": {
+    "inputs": {
+      "image": "characterlock/identity_reference.png"
+    },
+    "class_type": "LoadImage",
+    "is_changed": [
+      "98e7a01222a36ec5d7eafce6caa64f5ee526a5808132aafae90645923d100420"
+    ]
+  },
+  "58": {
+    "inputs": {
+      "model": [
+        "192",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3MemoryEfficientSageAttentionPatch"
+  },
+  "192": {
+    "inputs": {
+      "unet_name": "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader"
+  },
+  "223": {
+    "inputs": {
+      "model": [
+        "332",
+        0
+      ],
+      "conditioning": [
+        "265",
+        0
+      ]
+    },
+    "class_type": "BasicGuider"
+  },
+  "226": {
+    "inputs": {
+      "noise": [
+        "256",
+        0
+      ],
+      "guider": [
+        "223",
+        0
+      ],
+      "sampler": [
+        "332",
+        1
+      ],
+      "sigmas": [
+        "332",
+        2
+      ],
+      "latent_image": [
+        "265",
+        1
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced"
+  },
+  "250": {
+    "inputs": {
+      "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17",
+      "values.a": [
+        "259",
+        0
+      ]
+    },
+    "class_type": "ComfyMathExpression"
+  },
+  "252": {
+    "inputs": {
+      "aspect_ratio": "16:9 (Widescreen)",
+      "megapixels": 0.2,
+      "multiple": 32
+    },
+    "class_type": "ResolutionSelector"
+  },
+  "253": {
+    "inputs": {
+      "samples": [
+        "226",
+        1
+      ],
+      "vae": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "254": {
+    "inputs": {
+      "samples": [
+        "226",
+        1
+      ],
+      "vae": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "VAEDecodeAudio"
+  },
+  "256": {
+    "inputs": {
+      "noise_seed": 42
+    },
+    "class_type": "RandomNoise"
+  },
+  "259": {
+    "inputs": {
+      "value": 0.4
+    },
+    "class_type": "PrimitiveFloat"
+  },
+  "263": {
+    "inputs": {
+      "text": "An original fictional adult character, age 26, fully dressed in a modest casual outfit, standing in a softly lit studio. Natural expression, a small friendly smile, subtle head movement, static medium portrait shot. Preserve the face and visual identity of the supplied reference image. Safe for work, everyday lifestyle scene."
+    },
+    "class_type": "Text"
+  },
+  "264": {
+    "inputs": {
+      "frame_rate": 24.0,
+      "loop_count": 0,
+      "filename_prefix": "characterlock/video",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "253",
+        0
+      ],
+      "audio": [
+        "254",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine"
+  },
+  "265": {
+    "inputs": {
+      "prompt": [
+        "263",
+        0
+      ],
+      "width": [
+        "252",
+        0
+      ],
+      "height": [
+        "252",
+        1
+      ],
+      "length": [
+        "250",
+        1
+      ],
+      "ref_image_size": "match",
+      "clip": [
+        "340",
+        0
+      ],
+      "vae": [
+        "36",
+        0
+      ],
+      "audio_vae": [
+        "37",
+        0
+      ],
+      "ref_images.ref_image_0": [
+        "51",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3ReferenceToVideo"
+  },
+  "332": {
+    "inputs": {
+      "steps": 8,
+      "shift_video": 12.0,
+      "shift_audio": 3.0,
+      "sampler_name": "dual_clock_euler",
+      "scheduler": "beta",
+      "model": [
+        "334",
+        0
+      ],
+      "av_latent": [
+        "265",
+        1
+      ]
+    },
+    "class_type": "MiniMaxH3DualClockSamplerT8"
+  },
+  "334": {
+    "inputs": {
+      "model": [
+        "58",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)"
+  },
+  "340": {
+    "inputs": {
+      "clip_name": "qwen3vl-32B-MiniMax-H3-Q2_K.gguf",
+      "type": "stable_diffusion"
+    },
+    "class_type": "CLIPLoaderGGUF"
+  }
+}

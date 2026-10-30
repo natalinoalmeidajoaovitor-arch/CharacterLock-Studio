@@ -1,0 +1,441 @@
+{
+  "schema_version": "1.0.0",
+  "product": "CharacterLock Studio",
+  "release": "v1.0.0",
+  "description": "Verified model weights, LoRAs, voice models, and ComfyUI custom nodes required by CharacterLock Studio modules.",
+  "reference_hardware": {
+    "os": "Windows 10/11 x64",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti 16 GB VRAM",
+    "ram_gb_recommended": 32,
+    "disk_free_gb_full_suite": 62
+  },
+  "modules": {
+    "character_lab": {
+      "title": "Character Lab — Qwen Image 2.1",
+      "description": "9-view Character Sheet generation, identity creation, outfits, and scene references."
+    },
+    "dataset": {
+      "title": "Dataset — MATRIX Qwen 2.1",
+      "description": "Multi-angle facial expressions, 360-degree head, upper-body, and full-body reference datasets."
+    },
+    "video_studio": {
+      "title": "Video Studio — MiniMax H3",
+      "description": "Reference-to-video generation with synchronized audio, Realism LoRA, and 8-step Turbo LoRA."
+    },
+    "voice": {
+      "title": "Voice Studio — OmniVoice",
+      "description": "Local multilingual speech synthesis with automatic voice design."
+    },
+    "motion_swap": {
+      "title": "Motion Swap — MiniMax H3 Character Swap",
+      "description": "5-second local character motion transfer preserving source scene, framing, and performance."
+    }
+  },
+  "models": [
+    {
+      "id": "qwen-image-2.1-unet-int8",
+      "name": "Qwen Image 2.1 Diffusion Model (INT8 ConvRot)",
+      "category": "diffusion_models",
+      "filename": "qwen_image_2.1_int8_convrot.safetensors",
+      "install_relpath": "ComfyUI/models/diffusion_models/qwen_image_2.1_int8_convrot.safetensors",
+      "repo_id": "Comfy-Org/Qwen-Image-2.1",
+      "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/diffusion_models/qwen_image_2.1_int8_convrot.safetensors",
+      "size_bytes": 7256783064,
+      "sha256": "cb74113cb03faecd79611b01fd7fd642f0aa60d6f0b95086abee214d75eaa57d",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "2.1-int8-convrot",
+      "modules": ["character_lab", "dataset"],
+      "workflows": [
+        "qwen21-base-identity",
+        "qwen21-sheet-9view-description",
+        "qwen21-sheet-9view-reference",
+        "matrix-qwen21-dataset-head",
+        "matrix-qwen21-dataset-full360",
+        "qwen21-character-outfit",
+        "qwen21-scene-reference"
+      ]
+    },
+    {
+      "id": "qwen3vl-8b-w4a8",
+      "name": "Qwen3-VL 8B Text Encoder (W4A8)",
+      "category": "text_encoders",
+      "filename": "qwen3vl_8b_w4a8.safetensors",
+      "install_relpath": "ComfyUI/models/text_encoders/qwen3vl_8b_w4a8.safetensors",
+      "repo_id": "Comfy-Org/Qwen-Image-2.1",
+      "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_w4a8.safetensors",
+      "size_bytes": 6312105364,
+      "sha256": "7754425e55e7bea2bfde4dde59a4cc236cb44e5ee9c215ea66ef8d47012824eb",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "8b-w4a8",
+      "modules": ["character_lab", "dataset"],
+      "workflows": [
+        "qwen21-base-identity",
+        "qwen21-sheet-9view-description",
+        "qwen21-sheet-9view-reference",
+        "matrix-qwen21-dataset-head",
+        "matrix-qwen21-dataset-full360"
+      ]
+    },
+    {
+      "id": "qwen-image-2.1-vae-bf16",
+      "name": "Qwen Image 2.1 VAE (BF16)",
+      "category": "vae",
+      "filename": "qwen_image_2.1_vae_bf16.safetensors",
+      "install_relpath": "ComfyUI/models/vae/qwen_image_2.1_vae_bf16.safetensors",
+      "repo_id": "Comfy-Org/Qwen-Image-2.1",
+      "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/vae/qwen_image_2.1_vae_bf16.safetensors",
+      "size_bytes": 675509688,
+      "sha256": "bb21f7473051e1ac368515dd3f2e15cd44d7a11748ee8823e1ddca3e4876b7c9",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "2.1-bf16",
+      "modules": ["character_lab", "dataset"],
+      "workflows": [
+        "qwen21-base-identity",
+        "qwen21-sheet-9view-description",
+        "qwen21-sheet-9view-reference",
+        "matrix-qwen21-dataset-head",
+        "matrix-qwen21-dataset-full360"
+      ]
+    },
+    {
+      "id": "minimax-h3-singularity-ref2va-int8",
+      "name": "MiniMax H3 Singularity Ref2VA Pruned v1.3 (INT8)",
+      "category": "diffusion_models",
+      "filename": "Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors",
+      "install_relpath": "ComfyUI/models/diffusion_models/Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors",
+      "repo_id": "WarmBloodAban/Minimax-h3_Singularity",
+      "url": "https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity/resolve/main/Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors",
+      "size_bytes": 20967647456,
+      "sha256": "412a7b126595a958964193f3b42513d7cf2df4196ef04223a0f05e3622949cce",
+      "license": "Upstream MiniMax H3 Derivative Terms (verify commercial usage terms on Hugging Face)",
+      "gated": false,
+      "required": true,
+      "recommended_version": "v1.3-int8",
+      "modules": ["video_studio", "motion_swap"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-qwen3vl-32b-gguf",
+      "name": "Qwen3-VL 32B MiniMax H3 Text Encoder (Q2_K_M GGUF)",
+      "category": "text_encoders",
+      "filename": "qwen3vl_32b_minimax_h3-Q2_K_M.gguf",
+      "accepted_aliases": [
+        "qwen3vl-32B-MiniMax-H3-Q2_K.gguf",
+        "qwen3vl_32b_minimax_h3-Q2_K_M.gguf"
+      ],
+      "install_relpath": "ComfyUI/models/text_encoders/qwen3vl_32b_minimax_h3-Q2_K_M.gguf",
+      "repo_id": "unsloth/MiniMax-H3-GGUF",
+      "url": "https://huggingface.co/unsloth/MiniMax-H3-GGUF/resolve/main/qwen3vl_32b_minimax_h3-Q2_K_M.gguf",
+      "size_bytes": 13102161024,
+      "sha256": "a8ccadccd57ef34c838ffb8a7da8368bb554721b2760274a1d3b0df63960b997",
+      "license": "Upstream MiniMax H3 / Qwen Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "Q2_K_M",
+      "modules": ["video_studio", "motion_swap"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-video-vae-int8",
+      "name": "MiniMax H3 Video VAE (INT8 ConvRot)",
+      "category": "vae",
+      "filename": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "accepted_sizes": [2811065184, 3171670912],
+      "install_relpath": "ComfyUI/models/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "repo_id": "Comfy-Org/MiniMax-H3",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "size_bytes": 2811065184,
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+      "license": "Upstream MiniMax H3 Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "int8-convrot",
+      "modules": ["video_studio"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-video-base"
+      ]
+    },
+    {
+      "id": "minimax-h3-video-vae-fp16",
+      "name": "MiniMax H3 Video VAE (FP16)",
+      "category": "vae",
+      "filename": "minimax_h3_video_vae_fp16.safetensors",
+      "install_relpath": "ComfyUI/models/vae/minimax_h3_video_vae_fp16.safetensors",
+      "repo_id": "Comfy-Org/MiniMax-H3",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors",
+      "size_bytes": 5207808496,
+      "sha256": "7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522",
+      "license": "Upstream MiniMax H3 Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "fp16",
+      "modules": ["motion_swap"],
+      "workflows": [
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-audio-vae-fp32",
+      "name": "MiniMax H3 Audio VAE (FP32)",
+      "category": "vae",
+      "filename": "minimax_h3_audio_vae_fp32.safetensors",
+      "install_relpath": "ComfyUI/models/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "repo_id": "Comfy-Org/MiniMax-H3",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "size_bytes": 605254808,
+      "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+      "license": "Upstream MiniMax H3 Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "fp32",
+      "modules": ["video_studio", "motion_swap"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-realism-people-lora",
+      "name": "MiniMax H3 Realism People LoRA",
+      "category": "loras",
+      "filename": "h3-realism-people-t2v-i2v-r2v.safetensors",
+      "install_relpath": "ComfyUI/models/loras/h3-realism-people-t2v-i2v-r2v.safetensors",
+      "repo_id": "fal/MiniMax-H3-Realism-People-LoRA",
+      "url": "https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA/resolve/main/h3-realism-people-t2v-i2v-r2v.safetensors",
+      "size_bytes": 131229656,
+      "sha256": "acc529601d2da117fb81179e76c56e488a3beab1171659d305f04fa3655b787e",
+      "license": "Upstream fal / MiniMax H3 LoRA Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "1.0",
+      "modules": ["video_studio", "motion_swap"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-lightx2v-turbo-8step-lora",
+      "name": "MiniMax H3 LightX2V Turbo 8-Step LoRA (Rank 24 BF16)",
+      "category": "loras",
+      "filename": "minimax_h3_fl2v_lightx2v_turbo_8step_v1.0_resized_avg_rank_24_bf16.safetensors",
+      "install_relpath": "ComfyUI/models/loras/minimax_h3_fl2v_lightx2v_turbo_8step_v1.0_resized_avg_rank_24_bf16.safetensors",
+      "repo_id": "Kijai/MiniMax-H3_comfy",
+      "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/minimax_h3_fl2v_lightx2v_turbo_8step_v1.0_resized_avg_rank_24_bf16.safetensors",
+      "size_bytes": 364638304,
+      "sha256": "8e05b7b982c3aff7deb692a188c8a8d8acaeff8a12abfe1aeac822fb8ee3f0b7",
+      "license": "Apache-2.0 / Upstream MiniMax H3 Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "v1.0-rank24-bf16",
+      "modules": ["video_studio", "motion_swap"],
+      "workflows": [
+        "minimax-h3-video-realism-turbo8",
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "minimax-h3-character-swap-lora",
+      "name": "MiniMax H3 Character Swap LoRA (pro4500_1000)",
+      "category": "loras",
+      "filename": "h3_character_swap_pro4500_1000.safetensors",
+      "install_relpath": "ComfyUI/models/loras/h3_character_swap_pro4500_1000.safetensors",
+      "repo_id": "akatz-ai/MiniMax-H3-Character-Swap-LoRA",
+      "url": "https://huggingface.co/akatz-ai/MiniMax-H3-Character-Swap-LoRA/resolve/main/h3_character_swap_pro4500_1000.safetensors",
+      "size_bytes": 155110320,
+      "sha256": "4b2a3f420ae804c0aa3422761ff84dbd1bf52eef6900ffab6d2e66df63cb4e79",
+      "license": "Apache-2.0 / Upstream MiniMax H3 Terms",
+      "gated": false,
+      "required": true,
+      "recommended_version": "pro4500_1000",
+      "modules": ["motion_swap"],
+      "workflows": [
+        "minimax-h3-motion-swap-5s"
+      ]
+    },
+    {
+      "id": "omnivoice-main-weights",
+      "name": "OmniVoice Speech Model Weights",
+      "category": "voice_models",
+      "filename": "model.safetensors",
+      "install_relpath": "ComfyUI/models/omnivoice/model.safetensors",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/model.safetensors",
+      "size_bytes": 2450344112,
+      "sha256": "730839316de585f4c8298ec0e1712efc10fb19c6fa4e36eb741cb8d51ebcf6aa",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-config",
+      "name": "OmniVoice Model Config",
+      "category": "auxiliary",
+      "filename": "config.json",
+      "install_relpath": "ComfyUI/models/omnivoice/config.json",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/config.json",
+      "size_bytes": 2238,
+      "sha256": "5e359117e13b420c5e0c925d4aba650d624767131f1d1746928f8b850d5dc372",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-tokenizer",
+      "name": "OmniVoice Tokenizer",
+      "category": "auxiliary",
+      "filename": "tokenizer.json",
+      "install_relpath": "ComfyUI/models/omnivoice/tokenizer.json",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/tokenizer.json",
+      "size_bytes": 11423986,
+      "sha256": "408f669b7e2b045fdf54201d815bd364e6667dbd845115da81239c40bc6dcfd1",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-tokenizer-config",
+      "name": "OmniVoice Tokenizer Config",
+      "category": "auxiliary",
+      "filename": "tokenizer_config.json",
+      "install_relpath": "ComfyUI/models/omnivoice/tokenizer_config.json",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/tokenizer_config.json",
+      "size_bytes": 533,
+      "sha256": "49f78845596a82bf15c83673794bdf9f76f812b11f60ab6a2239d9be65b00676",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-audio-tokenizer-weights",
+      "name": "OmniVoice Audio Tokenizer Weights",
+      "category": "voice_models",
+      "filename": "model.safetensors",
+      "install_relpath": "ComfyUI/models/omnivoice/audio_tokenizer/model.safetensors",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/audio_tokenizer/model.safetensors",
+      "size_bytes": 805665628,
+      "sha256": "fe7c5e8785e0a05833e1bfc3e002ec7f55af21e306b2e7154a448c1f54ccfb0d",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-audio-tokenizer-config",
+      "name": "OmniVoice Audio Tokenizer Config",
+      "category": "auxiliary",
+      "filename": "config.json",
+      "install_relpath": "ComfyUI/models/omnivoice/audio_tokenizer/config.json",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/audio_tokenizer/config.json",
+      "size_bytes": 2531,
+      "sha256": "eefb20806f7104e77c9a5277c9df0f9bb8826b08eb1d4e8ab2b9829b6ef9fac1",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    },
+    {
+      "id": "omnivoice-audio-preprocessor-config",
+      "name": "OmniVoice Audio Preprocessor Config",
+      "category": "auxiliary",
+      "filename": "preprocessor_config.json",
+      "install_relpath": "ComfyUI/models/omnivoice/audio_tokenizer/preprocessor_config.json",
+      "repo_id": "k2-fsa/OmniVoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/main/audio_tokenizer/preprocessor_config.json",
+      "size_bytes": 206,
+      "sha256": "ae61eea88558608ee2fa86d2aec9fce8d99a5ff75d09cb7651ccce21ae1d9084",
+      "license": "Apache-2.0",
+      "gated": false,
+      "required": true,
+      "recommended_version": "main",
+      "modules": ["voice"],
+      "workflows": ["omnivoice-local-narration"]
+    }
+  ],
+  "custom_nodes": [
+    {
+      "name": "MATRIX-LAB-Nodes",
+      "folder": "MATRIX-LAB-Nodes",
+      "git_url": "https://github.com/JsonMatrixLab/MATRIX-LAB-Nodes.git",
+      "modules": ["character_lab", "dataset"],
+      "license": "Upstream Repository License"
+    },
+    {
+      "name": "ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "folder": "ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "git_url": "https://github.com/Adudeguyman/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder.git",
+      "modules": ["character_lab", "dataset", "video_studio", "motion_swap"],
+      "license": "Upstream Repository License"
+    },
+    {
+      "name": "ComfyUI-GGUF",
+      "folder": "ComfyUI-GGUF",
+      "git_url": "https://github.com/city96/ComfyUI-GGUF.git",
+      "modules": ["video_studio", "motion_swap"],
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "ComfyUI-KJNodes",
+      "folder": "ComfyUI-KJNodes",
+      "git_url": "https://github.com/kijai/ComfyUI-KJNodes.git",
+      "modules": ["character_lab", "dataset", "video_studio", "motion_swap"],
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "ComfyUI-VideoHelperSuite",
+      "folder": "ComfyUI-VideoHelperSuite",
+      "git_url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git",
+      "modules": ["video_studio", "motion_swap"],
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "rgthree-comfy",
+      "folder": "rgthree-comfy",
+      "git_url": "https://github.com/rgthree/rgthree-comfy.git",
+      "modules": ["motion_swap"],
+      "license": "MIT"
+    },
+    {
+      "name": "ComfyUI-Omnivoice",
+      "folder": "ComfyUI-Omnivoice",
+      "git_url": "https://github.com/wildminder/ComfyUI-Omnivoice.git",
+      "pip_packages": ["omnivoice"],
+      "modules": ["voice"],
+      "license": "Apache-2.0 / Upstream Repository License"
+    }
+  ]
+}

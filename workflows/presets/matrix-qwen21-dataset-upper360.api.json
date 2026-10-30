@@ -1,0 +1,783 @@
+{
+  "10": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_w4a8.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "12": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "13": {
+    "class_type": "Power Lora Loader (rgthree)",
+    "inputs": {
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "MiniMaxH3MediaLoader",
+    "inputs": {
+      "media_state": "[]"
+    }
+  },
+  "43": {
+    "class_type": "MiniMaxH3ReferenceSplitter",
+    "inputs": {
+      "references": [
+        "42",
+        0
+      ]
+    }
+  },
+  "64": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 25
+    }
+  },
+  "58": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 3000
+    }
+  },
+  "260": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose: the person faces the camera straight-on. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "261": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "264",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "260",
+        0
+      ],
+      "negative": [
+        "260",
+        1
+      ],
+      "latent_image": [
+        "260",
+        2
+      ]
+    }
+  },
+  "262": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "261",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "263": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/01",
+      "images": [
+        "262",
+        0
+      ]
+    }
+  },
+  "264": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 1",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "270": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: the whole body turned about 45 degrees so that the chest faces the LEFT edge of the image, three-quarter view, the head facing the camera. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "271": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "274",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "270",
+        0
+      ],
+      "negative": [
+        "270",
+        1
+      ],
+      "latent_image": [
+        "270",
+        2
+      ]
+    }
+  },
+  "272": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "271",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "273": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/02",
+      "images": [
+        "272",
+        0
+      ]
+    }
+  },
+  "274": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "280": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: exact side view, the body and the face point toward the LEFT edge of the image, head level. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "281": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "284",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "280",
+        0
+      ],
+      "negative": [
+        "280",
+        1
+      ],
+      "latent_image": [
+        "280",
+        2
+      ]
+    }
+  },
+  "282": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "281",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "283": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/03",
+      "images": [
+        "282",
+        0
+      ]
+    }
+  },
+  "284": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 3",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "290": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: the whole body turned about 135 degrees away from the camera toward the LEFT edge of the image, three-quarter back view, mostly the back visible, the face not looking at the camera. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "291": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "294",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "290",
+        0
+      ],
+      "negative": [
+        "290",
+        1
+      ],
+      "latent_image": [
+        "290",
+        2
+      ]
+    }
+  },
+  "292": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "291",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "293": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/04",
+      "images": [
+        "292",
+        0
+      ]
+    }
+  },
+  "294": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 4",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "300": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: seen from directly behind, the back of the head and the back of the body face the camera, no face visible. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the head and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the hair, hair length and hair colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "301": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "304",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "300",
+        0
+      ],
+      "negative": [
+        "300",
+        1
+      ],
+      "latent_image": [
+        "300",
+        2
+      ]
+    }
+  },
+  "302": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "301",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "303": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/05",
+      "images": [
+        "302",
+        0
+      ]
+    }
+  },
+  "304": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 5",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "310": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: the whole body turned about 135 degrees away from the camera toward the RIGHT edge of the image, three-quarter back view, mostly the back visible, the face not looking at the camera. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "311": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "314",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "310",
+        0
+      ],
+      "negative": [
+        "310",
+        1
+      ],
+      "latent_image": [
+        "310",
+        2
+      ]
+    }
+  },
+  "312": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "311",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "313": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/06",
+      "images": [
+        "312",
+        0
+      ]
+    }
+  },
+  "314": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 6",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "320": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: exact side view, the body and the face point toward the RIGHT edge of the image, head level. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "321": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "324",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "320",
+        0
+      ],
+      "negative": [
+        "320",
+        1
+      ],
+      "latent_image": [
+        "320",
+        2
+      ]
+    }
+  },
+  "322": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "321",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "323": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/07",
+      "images": [
+        "322",
+        0
+      ]
+    }
+  },
+  "324": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 7",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  },
+  "330": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> shows the upper body and the outfit. Change the pose and camera completely: the whole body turned about 45 degrees so that the chest faces the RIGHT edge of the image, three-quarter view, the head facing the camera. Half-body from the hips up, standing straight with the arms relaxed slightly away from the body, camera at chest height about 2 metres away, no wide-angle distortion, the face and torso sharp. Keep the exact body shape and proportions of <image2>: the same shoulder width, bust, waist and arm shape; do not make the body slimmer, curvier or more muscular. Wearing exactly the clothing of <image2>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "43",
+        0
+      ],
+      "images.image_2": [
+        "43",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "331": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "334",
+        1
+      ],
+      "steps": [
+        "64",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "330",
+        0
+      ],
+      "negative": [
+        "330",
+        1
+      ],
+      "latent_image": [
+        "330",
+        2
+      ]
+    }
+  },
+  "332": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "331",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "333": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/upper360/08",
+      "images": [
+        "332",
+        0
+      ]
+    }
+  },
+  "334": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 8",
+      "values.a": [
+        "58",
+        0
+      ]
+    }
+  }
+}

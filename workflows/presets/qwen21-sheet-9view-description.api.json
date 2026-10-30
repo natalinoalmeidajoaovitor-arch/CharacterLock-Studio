@@ -1,0 +1,1007 @@
+{
+  "10": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_w4a8.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "12": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "13": {
+    "class_type": "Power Lora Loader (rgthree)",
+    "inputs": {
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    }
+  },
+  "51": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "52": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 20261016
+    }
+  },
+  "62": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 10
+    }
+  },
+  "100": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Create a realistic standard close-up reference portrait of an original fictional adult character. Identity profile: Adult fictional character, natural casual styling. Front-facing head and shoulders, camera at eye level, face centred and prominent, complete head and hair visible, plain pale grey studio background, even soft light, natural skin. Fully clothed in modest casual clothing. This close-up defines the face for the connected profile, three-quarter, body and pose views.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "101": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "104",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "100",
+        0
+      ],
+      "negative": [
+        "100",
+        1
+      ],
+      "latent_image": [
+        "51",
+        0
+      ]
+    }
+  },
+  "102": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "101",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "103": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/100",
+      "images": [
+        "102",
+        0
+      ]
+    }
+  },
+  "104": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 1",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "190": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Head and shoulders turned about 45 degrees so that the face looks toward the LEFT edge of the image, three-quarter view, head level, neutral expression. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ]
+    }
+  },
+  "191": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "194",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "190",
+        0
+      ],
+      "negative": [
+        "190",
+        1
+      ],
+      "latent_image": [
+        "190",
+        2
+      ]
+    }
+  },
+  "192": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "191",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "193": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/190",
+      "images": [
+        "192",
+        0
+      ]
+    }
+  },
+  "194": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "200": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Exact profile: head and shoulders turned so that the nose points to the LEFT edge of the image, only one side of the face visible, head level, neutral expression. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ]
+    }
+  },
+  "201": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "204",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "200",
+        0
+      ],
+      "negative": [
+        "200",
+        1
+      ],
+      "latent_image": [
+        "200",
+        2
+      ]
+    }
+  },
+  "202": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "201",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "203": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/200",
+      "images": [
+        "202",
+        0
+      ]
+    }
+  },
+  "204": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 3",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "260": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same adult person as <image1>, same face, hair, eyes, skin and shirt. Change the framing completely: zoom out to a true waist-up studio photograph. Show the entire head, both shoulders, complete torso down to the waist and both arms with hands visible near the hips. The waist must be visible at the bottom of the frame. Neutral front view, arms relaxed, plain pale grey studio background, even soft light. Fully clothed; preserve the exact identity and upper-body clothing.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ]
+    }
+  },
+  "261": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "264",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "260",
+        0
+      ],
+      "negative": [
+        "260",
+        1
+      ],
+      "latent_image": [
+        "260",
+        2
+      ]
+    }
+  },
+  "262": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "261",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "263": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/260",
+      "images": [
+        "262",
+        0
+      ]
+    }
+  },
+  "264": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 1",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "340": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Photorealistic full-body front reference of the same adult person. <image1> defines the face and <image2> defines the upper body and clothing. Show the complete person from head to closed shoes, standing neutrally with arms slightly away from the torso. Preserve the same face, hair, skin, body build and upper-body outfit. Complete a coherent modest casual outfit with trousers and closed shoes. Plain pale grey studio background and even soft light. Entire body inside the frame, no cropped feet, fully clothed.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ]
+    }
+  },
+  "341": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "344",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "340",
+        0
+      ],
+      "negative": [
+        "340",
+        1
+      ],
+      "latent_image": [
+        "340",
+        2
+      ]
+    }
+  },
+  "342": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "341",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "343": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/340",
+      "images": [
+        "342",
+        0
+      ]
+    }
+  },
+  "344": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 1",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "350": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> the upper body, <image3> the full body with the complete outfit and shoes. Change the pose and camera completely: the whole body turned about 45 degrees so that the chest faces the LEFT edge of the image, three-quarter view, the head facing the camera. Full body from head to feet, the whole body inside the frame, standing straight with the arms relaxed slightly away from the body, camera at waist height about 3 metres away, no wide-angle distortion. Keep the exact body shape and proportions of <image3>: the same height, shoulder width, bust, waist, hips and leg length; do not make the body slimmer, curvier, taller or shorter. Wearing exactly the clothing and shoes of <image3>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ],
+      "images.image_3": [
+        "342",
+        0
+      ]
+    }
+  },
+  "351": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "354",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "350",
+        0
+      ],
+      "negative": [
+        "350",
+        1
+      ],
+      "latent_image": [
+        "350",
+        2
+      ]
+    }
+  },
+  "352": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "351",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "353": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/350",
+      "images": [
+        "352",
+        0
+      ]
+    }
+  },
+  "354": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "360": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> the upper body, <image3> the full body with the complete outfit and shoes. Change the pose and camera completely: exact side view, the body and the face point toward the LEFT edge of the image, head level. Full body from head to feet, the whole body inside the frame, standing straight with the arms relaxed slightly away from the body, camera at waist height about 3 metres away, no wide-angle distortion. Keep the exact body shape and proportions of <image3>: the same height, shoulder width, bust, waist, hips and leg length; do not make the body slimmer, curvier, taller or shorter. Wearing exactly the clothing and shoes of <image3>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the exact face, hair and eye colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ],
+      "images.image_3": [
+        "342",
+        0
+      ]
+    }
+  },
+  "361": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "364",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "360",
+        0
+      ],
+      "negative": [
+        "360",
+        1
+      ],
+      "latent_image": [
+        "360",
+        2
+      ]
+    }
+  },
+  "362": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "361",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "363": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/360",
+      "images": [
+        "362",
+        0
+      ]
+    }
+  },
+  "364": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 3",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "380": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person: <image1> shows the face, <image2> the upper body, <image3> the full body with the complete outfit and shoes. Change the pose and camera completely: seen from directly behind, the back of the head and the back of the body face the camera, no face visible. Full body from head to feet, the whole body inside the frame, standing straight with the arms relaxed slightly away from the body, camera at waist height about 3 metres away, no wide-angle distortion. Keep the exact body shape and proportions of <image3>: the same height, shoulder width, bust, waist, hips and leg length; do not make the body slimmer, curvier, taller or shorter. Wearing exactly the clothing and shoes of <image3>, the same garments, colours and fit; ignore the clothing in <image1>. Plain soft grey studio background, soft even studio light, realistic skin with natural texture. Keep the hair, hair length and hair colour of <image1>. Any further reference pictures show the same person and the same outfit from other angles. Realistic photograph. No motion blur, no double exposure.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ],
+      "images.image_3": [
+        "342",
+        0
+      ]
+    }
+  },
+  "381": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "384",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "380",
+        0
+      ],
+      "negative": [
+        "380",
+        1
+      ],
+      "latent_image": [
+        "380",
+        2
+      ]
+    }
+  },
+  "382": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "381",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "383": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/380",
+      "images": [
+        "382",
+        0
+      ]
+    }
+  },
+  "384": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 5",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "430": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same adult person: <image1> defines the face, <image2> the upper body, <image3> the complete body, clothing and shoes. Change the pose completely: neutral front-facing A-pose, standing upright, both arms extended diagonally down about 35 degrees away from the body, palms facing forwards, both hands and all fingers visible, feet hip-width apart. Full body from head to shoes entirely inside the frame. Preserve the exact face, hair, body proportions, clothing, colours and shoes of the references. Plain pale grey studio background, even soft light, realistic photograph, fully clothed, no props, no extra people.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ],
+      "images.image_3": [
+        "342",
+        0
+      ]
+    }
+  },
+  "431": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "434",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "430",
+        0
+      ],
+      "negative": [
+        "430",
+        1
+      ],
+      "latent_image": [
+        "430",
+        2
+      ]
+    }
+  },
+  "432": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "431",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "433": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/430",
+      "images": [
+        "432",
+        0
+      ]
+    }
+  },
+  "434": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "440": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same adult person: <image1> defines the face, <image2> the upper body, <image3> the complete body, clothing and shoes. Change the pose completely: confident front-facing stance with both hands resting on the hips, elbows pointing out, weight balanced on both feet, head facing the camera. Full body from head to shoes entirely inside the frame. Preserve the exact face, hair, body proportions, clothing, colours and shoes of the references. Plain pale grey studio background, even soft light, realistic photograph, fully clothed, no props, no extra people.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "102",
+        0
+      ],
+      "images.image_2": [
+        "262",
+        0
+      ],
+      "images.image_3": [
+        "342",
+        0
+      ]
+    }
+  },
+  "441": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "444",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "440",
+        0
+      ],
+      "negative": [
+        "440",
+        1
+      ],
+      "latent_image": [
+        "440",
+        2
+      ]
+    }
+  },
+  "442": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "441",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "443": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/sheet/440",
+      "images": [
+        "442",
+        0
+      ]
+    }
+  },
+  "444": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "421": {
+    "class_type": "ImageGridComposite3x3",
+    "inputs": {
+      "image1": [
+        "102",
+        0
+      ],
+      "image2": [
+        "192",
+        0
+      ],
+      "image3": [
+        "202",
+        0
+      ],
+      "image4": [
+        "342",
+        0
+      ],
+      "image5": [
+        "362",
+        0
+      ],
+      "image6": [
+        "382",
+        0
+      ],
+      "image7": [
+        "352",
+        0
+      ],
+      "image8": [
+        "432",
+        0
+      ],
+      "image9": [
+        "442",
+        0
+      ]
+    }
+  },
+  "422": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "421",
+        0
+      ],
+      "filename_prefix": "CharacterLock/sheet/character_sheet"
+    }
+  }
+}

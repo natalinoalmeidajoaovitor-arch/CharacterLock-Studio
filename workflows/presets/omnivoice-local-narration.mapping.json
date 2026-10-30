@@ -1,0 +1,74 @@
+{
+  "parameters": {
+    "text": {
+      "node_id": "14",
+      "input": "text",
+      "type": "string",
+      "kind": "prompt",
+      "required": true,
+      "label": "Texto da narração",
+      "description": "Texto falado; preenchido pelo editor de narração do Voice Studio.",
+      "default": "Olá! Eu sou uma influenciadora virtual criada no CharacterLock Studio."
+    },
+    "language": {
+      "node_id": "14",
+      "input": "language",
+      "type": "enum",
+      "kind": "other",
+      "required": true,
+      "default": "Portuguese",
+      "choices": [
+        "auto",
+        "Portuguese",
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Italian",
+        "Japanese",
+        "Chinese",
+        "Korean",
+        "Russian",
+        "Arabic"
+      ],
+      "label": "Idioma",
+      "description": "Idioma real exposto pelo OmniVoice instalado."
+    },
+    "speed": {
+      "node_id": "14",
+      "input": "speed",
+      "type": "number",
+      "kind": "other",
+      "required": true,
+      "default": 1.0,
+      "label": "Velocidade",
+      "min": 0.3,
+      "max": 3.0
+    },
+    "num_step": {
+      "node_id": "14",
+      "input": "num_step",
+      "type": "integer",
+      "kind": "other",
+      "required": true,
+      "default": 32,
+      "label": "Etapas de síntese",
+      "min": 1,
+      "max": 100
+    },
+    "seed": {
+      "node_id": "14",
+      "input": "seed",
+      "type": "integer",
+      "kind": "seed",
+      "required": true,
+      "default": 42,
+      "label": "Semente",
+      "min": 0,
+      "max": 4294967295
+    }
+  },
+  "output_nodes": [
+    "6"
+  ]
+}

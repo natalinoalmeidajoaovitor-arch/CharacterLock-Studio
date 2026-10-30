@@ -1,0 +1,751 @@
+{
+  "10": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_w4a8.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "12": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "13": {
+    "class_type": "Power Lora Loader (rgthree)",
+    "inputs": {
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    }
+  },
+  "40": {
+    "class_type": "MiniMaxH3MediaLoader",
+    "inputs": {
+      "media_state": "[]"
+    }
+  },
+  "41": {
+    "class_type": "MiniMaxH3ReferenceSplitter",
+    "inputs": {
+      "references": [
+        "40",
+        0
+      ]
+    }
+  },
+  "62": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 25
+    }
+  },
+  "52": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 1000
+    }
+  },
+  "100": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Neutral relaxed expression, lips softly closed, calm direct gaze into the camera, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "101": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "104",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "100",
+        0
+      ],
+      "negative": [
+        "100",
+        1
+      ],
+      "latent_image": [
+        "100",
+        2
+      ]
+    }
+  },
+  "102": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "101",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "103": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/01",
+      "images": [
+        "102",
+        0
+      ]
+    }
+  },
+  "104": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 1",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "110": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Soft closed-mouth smile: the corners of the lips gently raised, the cheeks slightly lifted, relaxed eyes, warm direct gaze into the camera, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "111": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "114",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "110",
+        0
+      ],
+      "negative": [
+        "110",
+        1
+      ],
+      "latent_image": [
+        "110",
+        2
+      ]
+    }
+  },
+  "112": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "111",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "113": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/02",
+      "images": [
+        "112",
+        0
+      ]
+    }
+  },
+  "114": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 2",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "120": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Laughing naturally: mouth open showing the upper teeth, cheeks raised high, eyes narrowed from laughing, head level and facing the camera. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "121": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "124",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "120",
+        0
+      ],
+      "negative": [
+        "120",
+        1
+      ],
+      "latent_image": [
+        "120",
+        2
+      ]
+    }
+  },
+  "122": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "121",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "123": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/03",
+      "images": [
+        "122",
+        0
+      ]
+    }
+  },
+  "124": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 3",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "130": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Mouth open in a relaxed natural way: the jaw loosely dropped, lips parted, the upper teeth visible, eyebrows relaxed, gaze into the camera, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "131": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "134",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "130",
+        0
+      ],
+      "negative": [
+        "130",
+        1
+      ],
+      "latent_image": [
+        "130",
+        2
+      ]
+    }
+  },
+  "132": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "131",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "133": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/04",
+      "images": [
+        "132",
+        0
+      ]
+    }
+  },
+  "134": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 4",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "140": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Both eyes fully closed with relaxed eyelids and the lashes resting, calm serene expression, lips softly closed, head level and facing the camera straight-on. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair and skin of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "141": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "144",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "140",
+        0
+      ],
+      "negative": [
+        "140",
+        1
+      ],
+      "latent_image": [
+        "140",
+        2
+      ]
+    }
+  },
+  "142": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "141",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "143": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/05",
+      "images": [
+        "142",
+        0
+      ]
+    }
+  },
+  "144": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 5",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "150": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Head turned about 30 degrees toward the LEFT edge of the image, the eyes looking far off toward the LEFT edge of the image, not at the camera, neutral relaxed expression, lips softly closed. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "151": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "154",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "150",
+        0
+      ],
+      "negative": [
+        "150",
+        1
+      ],
+      "latent_image": [
+        "150",
+        2
+      ]
+    }
+  },
+  "152": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "151",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "153": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/06",
+      "images": [
+        "152",
+        0
+      ]
+    }
+  },
+  "154": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 6",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "160": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Camera slightly above eye level, tilted down about 15 degrees: the top of the forehead is closer to the camera and appears larger than the chin. The person looks slightly up into the camera, neutral relaxed expression, lips softly closed. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "161": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "164",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "160",
+        0
+      ],
+      "negative": [
+        "160",
+        1
+      ],
+      "latent_image": [
+        "160",
+        2
+      ]
+    }
+  },
+  "162": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "161",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "163": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/07",
+      "images": [
+        "162",
+        0
+      ]
+    }
+  },
+  "164": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 7",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  },
+  "170": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Same person as <image1>. Camera slightly below the chin, pointing up about 15 degrees: the jawline and chin are closer to the camera, the underside of the nose is slightly visible and the forehead appears smaller. The person looks slightly down into the camera, neutral relaxed expression, lips softly closed. Shoulder-up portrait framed from the upper chest up, the whole head and hair visible, wearing the same clothing as in <image1>, plain soft grey studio background, soft even studio light, the face in sharp focus, realistic skin with natural texture and visible pores. Keep the face, hair, skin and exact eye colour of <image1>. Any further reference pictures show the same person from other angles. Realistic photograph.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "171": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "174",
+        1
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "170",
+        0
+      ],
+      "negative": [
+        "170",
+        1
+      ],
+      "latent_image": [
+        "170",
+        2
+      ]
+    }
+  },
+  "172": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "171",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "173": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/dataset/head/08",
+      "images": [
+        "172",
+        0
+      ]
+    }
+  },
+  "174": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "a + 8",
+      "values.a": [
+        "52",
+        0
+      ]
+    }
+  }
+}

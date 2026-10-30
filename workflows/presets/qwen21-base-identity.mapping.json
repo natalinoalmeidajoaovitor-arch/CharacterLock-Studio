@@ -1,0 +1,73 @@
+{
+  "parameters": {
+    "prompt": {
+      "node_id": "100",
+      "input": "prompt",
+      "type": "string",
+      "kind": "prompt",
+      "required": true,
+      "label": "Identidade do personagem"
+    },
+    "negative_prompt": {
+      "node_id": "100",
+      "input": "negative_prompt",
+      "type": "string",
+      "kind": "negative_prompt",
+      "default": "",
+      "label": "Elementos a evitar"
+    },
+    "width": {
+      "node_id": "51",
+      "input": "width",
+      "type": "enum",
+      "kind": "width",
+      "choices": [
+        512,
+        768,
+        1024
+      ],
+      "default": 512,
+      "label": "Largura"
+    },
+    "height": {
+      "node_id": "51",
+      "input": "height",
+      "type": "enum",
+      "kind": "height",
+      "choices": [
+        512,
+        640,
+        768,
+        1024
+      ],
+      "default": 640,
+      "label": "Altura"
+    },
+    "steps": {
+      "node_id": "101",
+      "input": "steps",
+      "type": "enum",
+      "choices": [
+        8,
+        16,
+        25,
+        32
+      ],
+      "default": 25,
+      "label": "Passos de geração"
+    },
+    "seed": {
+      "node_id": "101",
+      "input": "seed",
+      "type": "integer",
+      "kind": "seed",
+      "min": 0,
+      "max": 4294967295,
+      "default": 1001,
+      "label": "Semente"
+    }
+  },
+  "output_nodes": [
+    "103"
+  ]
+}

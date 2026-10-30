@@ -1,0 +1,35 @@
+{
+  "1": {
+    "class_type": "OmniVoiceModelLoader",
+    "inputs": {
+      "device": "cuda:0",
+      "dtype": "float16",
+      "compile": false
+    }
+  },
+  "14": {
+    "class_type": "OmniVoiceGenerate",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "text": "Olá. Esta é uma demonstração de voz local.",
+      "mode": "auto_voice",
+      "language": "Portuguese",
+      "guidance_scale": 2.0,
+      "speed": 1.0,
+      "num_step": 32,
+      "seed": 42
+    }
+  },
+  "6": {
+    "class_type": "PreviewAudio",
+    "inputs": {
+      "audio": [
+        "14",
+        0
+      ]
+    }
+  }
+}

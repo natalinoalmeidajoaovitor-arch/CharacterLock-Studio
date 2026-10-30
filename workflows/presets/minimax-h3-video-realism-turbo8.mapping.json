@@ -1,0 +1,118 @@
+{
+  "parameters": {
+    "identity_image": {
+      "node_id": "51",
+      "input": "image",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "label": "Referência da personagem",
+      "description": "Imagem da biblioteca enviada automaticamente ao ComfyUI como <Picture 1>."
+    },
+    "scene_prompt": {
+      "node_id": "263",
+      "input": "text",
+      "kind": "prompt",
+      "type": "string",
+      "required": true,
+      "default": "An original fictional adult character, age 26, from <Picture 1>, fully dressed in a modest casual outfit, standing in a softly lit studio. Natural expression, a small friendly smile, subtle head movement, static medium portrait shot. Preserve the face, hair and visual identity of the supplied reference image. Realistic natural skin texture and soft light.",
+      "label": "Direção da cena",
+      "description": "Use <Picture 1> para a referência selecionada. O gatilho r34l1sm é acrescentado automaticamente pelo workflow."
+    },
+    "realism_strength": {
+      "node_id": "334",
+      "input": "strength_model",
+      "kind": "lora",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "label": "Força do realismo",
+      "description": "LoRA de realismo ativada por padrão com força 1, conforme o arquivo enviado."
+    },
+    "turbo_strength": {
+      "node_id": "335",
+      "input": "strength_model",
+      "kind": "lora",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "label": "Força da Turbo8",
+      "description": "Apenas esta LoRA Turbo é carregada após a LoRA de realismo; força padrão 1."
+    },
+    "duration_seconds": {
+      "node_id": "259",
+      "input": "value",
+      "kind": "duration",
+      "type": "number",
+      "default": 5,
+      "min": 0.1,
+      "max": 15.0,
+      "label": "Duração (segundos)",
+      "description": "O workflow quantiza para 5 + 17n quadros a 24 fps. O padrão 5 s gera 124 quadros (cerca de 5,17 s)."
+    },
+    "megapixels": {
+      "node_id": "252",
+      "input": "megapixels",
+      "kind": "other",
+      "type": "number",
+      "default": 1,
+      "min": 0.1,
+      "max": 16.0,
+      "label": "Resolução (megapixels)"
+    },
+    "resolution_multiple": {
+      "node_id": "252",
+      "input": "multiple",
+      "kind": "other",
+      "type": "integer",
+      "default": 32,
+      "min": 8,
+      "max": 128,
+      "label": "Múltiplo da resolução",
+      "description": "O preset local usa múltiplos de 32 para alinhar as dimensões aos latentes H3. O original usa 24."
+    },
+    "aspect_ratio": {
+      "node_id": "252",
+      "input": "aspect_ratio",
+      "kind": "other",
+      "type": "enum",
+      "default": "16:9 (Widescreen)",
+      "choices": [
+        "1:1 (Square)",
+        "2:3 (Portrait Photo)",
+        "3:2 (Photo)",
+        "3:4 (Portrait Standard)",
+        "4:3 (Standard)",
+        "9:16 (Portrait Widescreen)",
+        "16:9 (Widescreen)",
+        "21:9 (Ultrawide)"
+      ],
+      "label": "Proporção"
+    },
+    "steps": {
+      "node_id": "332",
+      "input": "steps",
+      "kind": "other",
+      "type": "integer",
+      "default": 8,
+      "min": 1,
+      "max": 1000,
+      "label": "Steps"
+    },
+    "seed": {
+      "node_id": "256",
+      "input": "noise_seed",
+      "kind": "seed",
+      "type": "integer",
+      "default": 474329994414961,
+      "min": 0,
+      "max": 9007199254740991,
+      "label": "Seed"
+    }
+  },
+  "output_nodes": [
+    "264"
+  ]
+}

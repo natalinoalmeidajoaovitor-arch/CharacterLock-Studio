@@ -1,0 +1,134 @@
+{
+  "parameters": {
+    "identity_image": {
+      "node_id": "6614",
+      "input": "image",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "label": "Referência da personagem (<Picture 1>)",
+      "description": "Imagem aprovada da personagem enviada ao ComfyUI como <Picture 1>."
+    },
+    "source_video": {
+      "node_id": "6613",
+      "input": "video",
+      "kind": "video",
+      "type": "string",
+      "required": true,
+      "label": "Vídeo de movimento (<Video 1>)",
+      "description": "Vídeo MP4 de referência de movimento enviado ao ComfyUI como <Video 1>."
+    },
+    "target_person": {
+      "node_id": "6346",
+      "input": "replace",
+      "kind": "other",
+      "type": "string",
+      "required": true,
+      "default": "man on the right in the black t-shirt",
+      "label": "Pessoa a substituir em <Video 1>",
+      "description": "Identifique qual pessoa do vídeo original será substituída (ex.: homem da direita ou homem da esquerda)."
+    },
+    "swap_prompt": {
+      "node_id": "6350",
+      "input": "value",
+      "kind": "prompt",
+      "type": "string",
+      "required": true,
+      "default": "Replace the [TARGET_PERSON] in <Video 1> with the character shown in <Picture 1>.\n\nsubject_definitions:\n<Subject 1> is the replacement character whose appearance comes from <Picture 1> and whose performance comes from the [TARGET_PERSON] being replaced in <Video 1>. Preserve the reference character's facial features, hairstyle, skin tone, body proportions, clothing, colors, and distinctive visual style. The reference image supplies appearance only, not the character's pose, expression, background, or framing.\n<Subject 2> is the surrounding scene from <Video 1>, including its exact orange background wall, lighting, hanging microphone, objects, and any people other than the [TARGET_PERSON] being replaced.\n<Video 1> is the source video being edited and supplies the shot composition, camera movement, timing, and sequence of actions.\n\nsummary:\n[video editing + reference generation] The target video is an edited version of <Video 1>. Replace only the [TARGET_PERSON] with <Subject 1>, transferring their complete visible performance to the reference character while preserving <Subject 2> and the source video's framing and timing.\n\nretention_analysis:\n<Subject 1> (throughout [Shot 1]): fully_preserved - maintain the character's referenced identity, clothing, proportions, and visual style consistently as the character performs the source person's movements.\n<Subject 2> (throughout [Shot 1]): fully_preserved - retain the surrounding scene, exact background color, and other people unchanged over time.\n<Video 1>: partially_preserved - retain composition, camera motion, action timing, and duration; replace only the [TARGET_PERSON]'s appearance.\n\ndetailed_description:\nPreserve the source scene's visual treatment while retaining the replacement character's distinctive design. Adapt illumination, shading, and perspective to the source scene.\n\n[Shot 1] Begin with the same composition and camera viewpoint as <Video 1>. <Subject 1> occupies the [TARGET_PERSON]'s position and follows their movement through the frame. Match the original performance moment by moment: body posture, gestures, head turns, gaze, blinking, facial expressions, and visible mouth movements.\n\nMaintain the reference character's identity through every expression and viewing angle. Hair and clothing move naturally with the transferred performance. Preserve interactions with source-scene objects and the ordering of foreground and background occlusions.\n\nKeep the source video's crop and shot scale. Show only the portions of the replacement character that belong within that framing; do not widen the shot to reproduce the full-body reference. Do not import the reference image's gray background, static pose, or handheld props. Preserve the source camera movement and action timing through the final frame.\n\noverall_soundscape:\nRetain the source clip's existing sound without adding new dialogue or sound effects.\n\nnon_diegetic_music:\nRetain existing source music, if present; add no new music.",
+      "label": "Instrução de Character Swap",
+      "description": "Use [TARGET_PERSON] para inserir automaticamente a pessoa escolhida na instrução de substituição entre <Video 1> e <Picture 1>."
+    },
+    "duration_seconds": {
+      "node_id": "6342",
+      "input": "value",
+      "kind": "duration",
+      "type": "number",
+      "default": 5,
+      "min": 0.5,
+      "max": 10.0,
+      "label": "Duração (segundos)",
+      "description": "Limitado a 5 s no teste (sincronizado automaticamente com os quadros reais do vídeo na quantização 5 + 17n do MiniMax H3)."
+    },
+    "megapixels": {
+      "node_id": "6341",
+      "input": "value",
+      "kind": "other",
+      "type": "number",
+      "default": 0.5,
+      "min": 0.2,
+      "max": 2.0,
+      "label": "Resolução (megapixels)"
+    },
+    "aspect_ratio": {
+      "node_id": "6345",
+      "input": "aspect_ratio",
+      "kind": "other",
+      "type": "enum",
+      "default": "16:9 (Widescreen)",
+      "choices": [
+        "1:1 (Square)",
+        "2:3 (Portrait Photo)",
+        "3:2 (Photo)",
+        "3:4 (Portrait Standard)",
+        "4:3 (Standard)",
+        "9:16 (Portrait Widescreen)",
+        "16:9 (Widescreen)",
+        "21:9 (Ultrawide)"
+      ],
+      "label": "Proporção"
+    },
+    "swap_strength": {
+      "node_id": "6615",
+      "input": "strength_model",
+      "kind": "lora",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "label": "Força da LoRA Character Swap"
+    },
+    "realism_strength": {
+      "node_id": "6374",
+      "input": "strength_model",
+      "kind": "lora",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 2,
+      "label": "Força da LoRA Realismo"
+    },
+    "turbo_strength": {
+      "node_id": "6122",
+      "input": "strength_model",
+      "kind": "lora",
+      "type": "number",
+      "default": 1,
+      "min": 0,
+      "max": 2,
+      "label": "Força da LoRA Turbo"
+    },
+    "steps": {
+      "node_id": "212",
+      "input": "steps",
+      "kind": "other",
+      "type": "integer",
+      "default": 8,
+      "min": 1,
+      "max": 50,
+      "label": "Steps"
+    },
+    "seed": {
+      "node_id": "6327",
+      "input": "seed",
+      "kind": "seed",
+      "type": "integer",
+      "default": 43,
+      "min": 0,
+      "max": 9007199254740991,
+      "label": "Seed"
+    }
+  },
+  "output_nodes": [
+    "6541"
+  ]
+}

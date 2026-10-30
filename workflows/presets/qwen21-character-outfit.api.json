@@ -1,0 +1,147 @@
+{
+  "10": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_w4a8.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "12": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "13": {
+    "class_type": "Power Lora Loader (rgthree)",
+    "inputs": {
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    }
+  },
+  "40": {
+    "class_type": "MiniMaxH3MediaLoader",
+    "inputs": {
+      "media_state": "[]"
+    }
+  },
+  "41": {
+    "class_type": "MiniMaxH3ReferenceSplitter",
+    "inputs": {
+      "references": [
+        "40",
+        0
+      ]
+    }
+  },
+  "52": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 20261017
+    }
+  },
+  "62": {
+    "class_type": "PrimitiveInt",
+    "inputs": {
+      "value": 10
+    }
+  },
+  "100": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "prompt": "Full-body studio fashion photograph of the character in <image1>, <image2>, <image3>.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "clip": [
+        "13",
+        1
+      ],
+      "vae": [
+        "12",
+        0
+      ],
+      "images.image_1": [
+        "41",
+        0
+      ],
+      "images.image_2": [
+        "41",
+        1
+      ],
+      "images.image_3": [
+        "41",
+        2
+      ]
+    }
+  },
+  "101": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": [
+        "52",
+        0
+      ],
+      "steps": [
+        "62",
+        0
+      ],
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "model": [
+        "13",
+        0
+      ],
+      "positive": [
+        "100",
+        0
+      ],
+      "negative": [
+        "100",
+        1
+      ],
+      "latent_image": [
+        "100",
+        2
+      ]
+    }
+  },
+  "102": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "101",
+        0
+      ],
+      "vae": [
+        "12",
+        0
+      ]
+    }
+  },
+  "103": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "CharacterLock/outfits/outfit",
+      "images": [
+        "102",
+        0
+      ]
+    }
+  }
+}

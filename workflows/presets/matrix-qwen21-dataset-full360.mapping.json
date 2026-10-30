@@ -1,0 +1,47 @@
+{
+  "parameters": {
+    "identity_prompt": {
+      "node_id": "340",
+      "input": "prompt",
+      "kind": "prompt",
+      "type": "string",
+      "required": true
+    },
+    "steps": {
+      "node_id": "65",
+      "input": "value",
+      "kind": "other",
+      "type": "integer",
+      "default": 10,
+      "min": 1,
+      "max": 10000
+    },
+    "seed": {
+      "node_id": "61",
+      "input": "value",
+      "kind": "seed",
+      "type": "integer",
+      "default": 4000,
+      "min": 0,
+      "max": 4294967000
+    },
+    "sheet_references": {
+      "node_id": "44",
+      "input": "media_state",
+      "kind": "image",
+      "type": "string",
+      "required": true,
+      "serializer": "h3_media_state"
+    }
+  },
+  "output_nodes": [
+    "343",
+    "353",
+    "363",
+    "373",
+    "383",
+    "393",
+    "403",
+    "413"
+  ]
+}

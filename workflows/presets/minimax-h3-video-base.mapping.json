@@ -1,0 +1,75 @@
+{
+  "parameters": {
+    "identity_image": {
+      "node_id": "51",
+      "input": "image",
+      "type": "string",
+      "kind": "image",
+      "required": true,
+      "label": "Referência visual do personagem",
+      "description": "Escolha uma imagem da biblioteca; o arquivo será enviado automaticamente ao ComfyUI."
+    },
+    "scene_prompt": {
+      "node_id": "263",
+      "input": "text",
+      "type": "string",
+      "kind": "prompt",
+      "required": true,
+      "default": "An original fictional adult character, age 26, fully dressed in a modest casual outfit, standing in a softly lit studio. Natural expression, a small friendly smile, subtle head movement, static medium portrait shot. Preserve the face and visual identity of the supplied reference image. Safe for work, everyday lifestyle scene.",
+      "label": "Identidade e direção da cena"
+    },
+    "duration_seconds": {
+      "node_id": "259",
+      "input": "value",
+      "type": "number",
+      "kind": "duration",
+      "default": 0.4,
+      "min": 0.1,
+      "max": 15.0,
+      "label": "Duração solicitada (segundos)",
+      "description": "O H3 quantiza o resultado para 5 + 17n quadros a 24 fps. 0,4 s resulta em 22 quadros, aproximadamente 0,92 s."
+    },
+    "megapixels": {
+      "node_id": "252",
+      "input": "megapixels",
+      "type": "number",
+      "kind": "other",
+      "default": 0.2,
+      "min": 0.1,
+      "max": 1.0,
+      "label": "Resolução (megapixels)",
+      "description": "Teste inicial em 0,2 MP. O seletor real ajusta largura e altura a múltiplos de 32."
+    },
+    "aspect_ratio": {
+      "node_id": "252",
+      "input": "aspect_ratio",
+      "type": "enum",
+      "kind": "other",
+      "default": "16:9 (Widescreen)",
+      "choices": [
+        "1:1 (Square)",
+        "2:3 (Portrait Photo)",
+        "3:2 (Photo)",
+        "3:4 (Portrait Standard)",
+        "4:3 (Standard)",
+        "9:16 (Portrait Widescreen)",
+        "16:9 (Widescreen)",
+        "21:9 (Ultrawide)"
+      ],
+      "label": "Proporção do vídeo"
+    },
+    "seed": {
+      "node_id": "256",
+      "input": "noise_seed",
+      "type": "integer",
+      "kind": "seed",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647,
+      "label": "Seed"
+    }
+  },
+  "output_nodes": [
+    "264"
+  ]
+}

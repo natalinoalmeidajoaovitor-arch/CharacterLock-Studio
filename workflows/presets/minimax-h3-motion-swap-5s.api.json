@@ -1,0 +1,402 @@
+{
+  "207": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "208": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "209": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "213",
+        1
+      ],
+      "vae": [
+        "208",
+        0
+      ]
+    }
+  },
+  "211": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "212": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "6007",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 8,
+      "denoise": 1
+    }
+  },
+  "213": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "217",
+        0
+      ],
+      "guider": [
+        "214",
+        0
+      ],
+      "sampler": [
+        "211",
+        0
+      ],
+      "sigmas": [
+        "212",
+        0
+      ],
+      "latent_image": [
+        "6617",
+        1
+      ]
+    }
+  },
+  "214": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "6007",
+        0
+      ],
+      "conditioning": [
+        "6617",
+        0
+      ]
+    }
+  },
+  "215": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "Minimax-h3_Singularity_ref2va_Pruned_v1.3_int8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "216": {
+    "class_type": "CLIPLoaderGGUF",
+    "inputs": {
+      "clip_name": "qwen3vl-32B-MiniMax-H3-Q2_K.gguf",
+      "type": "minimax"
+    }
+  },
+  "217": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": [
+        "6327",
+        0
+      ]
+    }
+  },
+  "6007": {
+    "class_type": "MiniMaxH3SigmaShift",
+    "inputs": {
+      "model": [
+        "6126",
+        0
+      ],
+      "shift_video": 12,
+      "shift_audio": 3
+    }
+  },
+  "6122": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "215",
+        0
+      ],
+      "lora_name": "minimax_h3_fl2v_lightx2v_turbo_8step_v1.0_resized_avg_rank_24_bf16.safetensors",
+      "strength_model": 1
+    }
+  },
+  "6123": {
+    "class_type": "PathchSageAttentionKJ",
+    "inputs": {
+      "model": [
+        "6373",
+        0
+      ],
+      "sage_attention": "auto",
+      "allow_compile": false
+    }
+  },
+  "6126": {
+    "class_type": "ModelPatchTorchSettings",
+    "inputs": {
+      "model": [
+        "6127",
+        0
+      ],
+      "enable_fp16_accumulation": true
+    }
+  },
+  "6127": {
+    "class_type": "MiniMaxChunkFeedForward",
+    "inputs": {
+      "model": [
+        "6123",
+        0
+      ],
+      "chunks": 2,
+      "seq_threshold": 4096
+    }
+  },
+  "6327": {
+    "class_type": "SeedNode",
+    "inputs": {
+      "seed": 43
+    }
+  },
+  "6341": {
+    "class_type": "PrimitiveFloat",
+    "inputs": {
+      "value": 0.5
+    }
+  },
+  "6342": {
+    "class_type": "PrimitiveFloat",
+    "inputs": {
+      "value": 5
+    }
+  },
+  "6343": {
+    "class_type": "PrimitiveFloat",
+    "inputs": {
+      "value": 24
+    }
+  },
+  "6344": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17",
+      "values.a": [
+        "6342",
+        0
+      ]
+    }
+  },
+  "6345": {
+    "class_type": "ResolutionSelector",
+    "inputs": {
+      "aspect_ratio": "16:9 (Widescreen)",
+      "megapixels": [
+        "6341",
+        0
+      ],
+      "multiple": 32
+    }
+  },
+  "6346": {
+    "class_type": "StringReplace",
+    "inputs": {
+      "string": [
+        "6350",
+        0
+      ],
+      "find": "[TARGET_PERSON]",
+      "replace": "man on the right in the black t-shirt"
+    }
+  },
+  "6348": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "expression": "max(5, a - ((a - 5) % 17))",
+      "values.a": [
+        "6613",
+        1
+      ]
+    }
+  },
+  "6349": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": [
+        "6614",
+        0
+      ],
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "lanczos",
+      "keep_proportion": "resize",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 32,
+      "device": "cpu"
+    }
+  },
+  "6350": {
+    "class_type": "PrimitiveStringMultiline",
+    "inputs": {
+      "value": "Replace the [TARGET_PERSON] in <Video 1> with the character shown in <Picture 1>.\n\nsubject_definitions:\n<Subject 1> is the replacement character whose appearance comes from <Picture 1> and whose performance comes from the [TARGET_PERSON] being replaced in <Video 1>. Preserve the reference character's facial features, hairstyle, skin tone, body proportions, clothing, colors, and distinctive visual style. The reference image supplies appearance only, not the character's pose, expression, background, or framing.\n<Subject 2> is the surrounding scene from <Video 1>, including its exact orange background wall, lighting, hanging microphone, objects, and any people other than the [TARGET_PERSON] being replaced.\n<Video 1> is the source video being edited and supplies the shot composition, camera movement, timing, and sequence of actions.\n\nsummary:\n[video editing + reference generation] The target video is an edited version of <Video 1>. Replace only the [TARGET_PERSON] with <Subject 1>, transferring their complete visible performance to the reference character while preserving <Subject 2> and the source video's framing and timing.\n\nretention_analysis:\n<Subject 1> (throughout [Shot 1]): fully_preserved - maintain the character's referenced identity, clothing, proportions, and visual style consistently as the character performs the source person's movements.\n<Subject 2> (throughout [Shot 1]): fully_preserved - retain the surrounding scene, exact background color, and other people unchanged over time.\n<Video 1>: partially_preserved - retain composition, camera motion, action timing, and duration; replace only the [TARGET_PERSON]'s appearance.\n\ndetailed_description:\nPreserve the source scene's visual treatment while retaining the replacement character's distinctive design. Adapt illumination, shading, and perspective to the source scene.\n\n[Shot 1] Begin with the same composition and camera viewpoint as <Video 1>. <Subject 1> occupies the [TARGET_PERSON]'s position and follows their movement through the frame. Match the original performance moment by moment: body posture, gestures, head turns, gaze, blinking, facial expressions, and visible mouth movements.\n\nMaintain the reference character's identity through every expression and viewing angle. Hair and clothing move naturally with the transferred performance. Preserve interactions with source-scene objects and the ordering of foreground and background occlusions.\n\nKeep the source video's crop and shot scale. Show only the portions of the replacement character that belong within that framing; do not widen the shot to reproduce the full-body reference. Do not import the reference image's gray background, static pose, or handheld props. Preserve the source camera movement and action timing through the final frame.\n\noverall_soundscape:\nRetain the source clip's existing sound without adding new dialogue or sound effects.\n\nnon_diegetic_music:\nRetain existing source music, if present; add no new music."
+    }
+  },
+  "6373": {
+    "class_type": "MiniMaxH3MemoryEfficientSageAttentionPatch",
+    "inputs": {
+      "model": [
+        "6374",
+        0
+      ]
+    }
+  },
+  "6374": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "6615",
+        0
+      ],
+      "lora_name": "h3-realism-people-t2v-i2v-r2v.safetensors",
+      "strength_model": 0
+    }
+  },
+  "6432": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "213",
+        1
+      ],
+      "vae": [
+        "207",
+        0
+      ]
+    }
+  },
+  "6516": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": [
+        "6613",
+        0
+      ],
+      "width": [
+        "6345",
+        0
+      ],
+      "height": [
+        "6345",
+        1
+      ],
+      "upscale_method": "lanczos",
+      "keep_proportion": "pad",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu"
+    }
+  },
+  "6541": {
+    "class_type": "VHS_VideoCombine",
+    "inputs": {
+      "images": [
+        "6432",
+        0
+      ],
+      "audio": [
+        "209",
+        0
+      ],
+      "frame_rate": 24,
+      "loop_count": 0,
+      "filename_prefix": "CharacterLock/motion_swap",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_output": true
+    }
+  },
+  "6613": {
+    "class_type": "VHS_LoadVideo",
+    "inputs": {
+      "video": "characterlock_motion_reference.mp4",
+      "force_rate": [
+        "6343",
+        0
+      ],
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": [
+        "6344",
+        1
+      ],
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    }
+  },
+  "6614": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "characterlock_identity_reference.png"
+    }
+  },
+  "6615": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "6122",
+        0
+      ],
+      "lora_name": "h3_character_swap_pro4500_1000.safetensors",
+      "strength_model": 1
+    }
+  },
+  "6617": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "216",
+        0
+      ],
+      "vae": [
+        "207",
+        0
+      ],
+      "audio_vae": [
+        "208",
+        0
+      ],
+      "ref_images.ref_image_0": [
+        "6349",
+        0
+      ],
+      "ref_videos.ref_video_0": [
+        "6516",
+        0
+      ],
+      "prompt": [
+        "6346",
+        0
+      ],
+      "width": [
+        "6345",
+        0
+      ],
+      "height": [
+        "6345",
+        1
+      ],
+      "length": [
+        "6348",
+        1
+      ],
+      "ref_image_size": "match"
+    }
+  }
+}
