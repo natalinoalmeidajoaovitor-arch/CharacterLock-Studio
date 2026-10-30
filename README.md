@@ -1,6 +1,18 @@
 # CharacterLock Studio
 *Create once. Keep the character. Produce everything.*
 
+## Product presentation
+
+### Presentation 1
+
+https://github.com/user-attachments/assets/09911e70-1123-4bf9-b6bc-2c9f4d639c6d
+
+### Presentation 2
+
+https://github.com/user-attachments/assets/5e913a3d-4f2a-4b07-8bb8-327c34d93a25
+
+---
+
 ![CharacterLock Studio Overview](docs/screenshots/01-overview.png)
 
 **Open-source AI character production studio powered by ComfyUI and the official Comfy SDK.** Create consistent virtual characters once, build multi-angle datasets, generate cinematic reference-to-video scenes, synthesize multilingual voices, and transfer real human performances with Character Motion Swap — **100% locally on consumer 16 GB GPUs**.

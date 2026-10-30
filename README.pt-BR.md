@@ -1,6 +1,18 @@
 # CharacterLock Studio (Português — Brasil)
 *Create once. Keep the character. Produce everything.*
 
+## Apresentação do projeto
+
+### Apresentação 1
+
+https://github.com/user-attachments/assets/09911e70-1123-4bf9-b6bc-2c9f4d639c6d
+
+### Apresentação 2
+
+https://github.com/user-attachments/assets/5e913a3d-4f2a-4b07-8bb8-327c34d93a25
+
+---
+
 > Read in English: **[README.md](README.md)**
 
 ![Visão Geral do CharacterLock Studio](docs/screenshots/01-overview.png)
